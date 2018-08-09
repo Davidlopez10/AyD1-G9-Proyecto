@@ -30,10 +30,16 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE asignacion(
-	correlativo INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	carnet INT UNSIGNED NOT NULL,
-	codigo VARCHAR(10) NOT NULL,
-	PRIMARY KEY (correlativo),
+	codigo_curso VARCHAR(10) NOT NULL,
+	PRIMARY KEY (carnet, codigo_curso),
 	FOREIGN KEY carnet REFERENCES usuarios (carnet),
-	FOREIGN KEY codigo REFERENCES cursos (codigo)
+	FOREIGN KEY codigo_curso REFERENCES cursos (codigo)
+);
+
+CREATE TABLE tareas(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	codigo_curso VARCHAR(10),
+	PRIMARY KEY (id),
+	FOREIGN KEY codigo_curso REFERENCES cursos (codigo)
 );
