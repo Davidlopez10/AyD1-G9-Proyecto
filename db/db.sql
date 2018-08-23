@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS tarea(
 	FOREIGN KEY (codigo_curso) REFERENCES curso(codigo)
 );
 
+INSERT INTO usuario(carnet, nombres, apellidos) VALUES ('209900909', 'USUARIO', 'PRUEBA');
 
 INSERT INTO area (nombre) VALUES ('Metodologia de Sistemas');
 INSERT INTO area (nombre) VALUES ('Ciencias de la Computacion');
