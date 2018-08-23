@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 
 DROP TABLE IF EXISTS estado_usuario_curso;
 
-CREATE TABLE IF NOT EXISTS usuario_curso(
+CREATE TABLE IF NOT EXISTS estado_usuario_curso(
 	id INT UNSIGNED NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id)
@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS usuario_curso;
 CREATE TABLE IF NOT EXISTS usuario_curso(
 	carnet INT UNSIGNED NOT NULL,
 	codigo_curso VARCHAR(10) NOT NULL,
-	id_estado_usuario_curso INT NOT NULL,
+	id_estado_usuario_curso INT UNSIGNED NOT NULL,
 	PRIMARY KEY (carnet, codigo_curso),
 	FOREIGN KEY (carnet) REFERENCES usuario(carnet),
 	FOREIGN KEY (codigo_curso) REFERENCES curso(codigo),
@@ -89,7 +89,7 @@ INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) 
 INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('103','Mate Basica 2', 7, 'N', 'S', 4);
 INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('005','Tecnicas de Estudio y de Investigacion', 3, 'S', 'S', 4);
 INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('040','Deportes 2', 1, 'N', 'N', 4);
-INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('348','Fisica Basica', 5, 'S', 'S', 4);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('147','Fisica Basica', 5, 'S', 'S', 4);
 INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, id_area) VALUES ('0008','Idioma Tecnico 2', 2, 'N', 'N', 4);
 
 INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, creditos_necesarios, id_area) VALUES ('795','Logica de Sistemas', 2, 'S', 'S', 33, 1);
