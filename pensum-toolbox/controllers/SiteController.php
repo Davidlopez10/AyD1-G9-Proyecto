@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\Area;
+use app\utilities\Dashboard;
 
 class SiteController extends Controller
 {
@@ -62,7 +62,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
+        $carnet = 209900909; // USUARIO DE PRUEBAS
+        $data_arrs = Dashboard::get_cursos_usuario($carnet);
+
+        return $this->render('index', [
+            'data_arrs' => $data_arrs,
+        ]);
+        //return $this->render('index');
     }
 
     /**
