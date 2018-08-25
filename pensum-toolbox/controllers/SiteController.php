@@ -64,7 +64,7 @@ class SiteController extends Controller
     {
         // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
         $carnet = 209900909; // USUARIO DE PRUEBAS
-        $data_arrs = Dashboard::get_cursos_usuario($carnet);
+        $data_arrs = Dashboard::get_cursos($carnet);
 
         return $this->render('index', [
             'data_arrs' => $data_arrs,
