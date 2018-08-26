@@ -1,0 +1,100 @@
+<?php
+
+namespace app\utilities;
+
+use Yii;
+use app\models\Curso;
+use app\models\UsuarioCurso;
+use app\models\Prerrequisito;
+
+class OperacionesCurso{
+
+    public static function marcar_como_aprobado($codigo_curso, $carnet_usuario){
+        try{
+            if(OperacionesCurso::validar_prerrequisitos($codigo_curso, $carnet_usuario)){
+                $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
+                $usuario_curso_row->estado_curso = 2;
+                $usuario_curso_row->save();
+                return true;
+            } // if
+        } catch(Exception $e){
+            
+        } // catch
+        return false;
+    } // marcar_como_aprobado
+
+    public static function validar_prerrequisitos($codigo_curso, $carnet_usuario){
+        $prerrequisito_rows = Prerrequisito::find()->where('post = :post', [':post' => $codigo_curso])->all();
+        foreach($prerrequisito_rows as $prerrequisito_row){
+            $usuario_curso_count = UsuarioCurso::find()->where('curso = :curso',[':curso' => $prerrequisito_row->pre])->andWhere('estado_curso = 2')->count();
+            if($usuario_curso_count == 0){
+                return false;
+            } // if
+            $creditos_usuario = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
+            if($prerrequisito_row->post0->creditos_necesarios > $creditos_usuario){
+                return false;
+            } // if
+        } // foreach
+        return true;
+    } // validar_prerrequisitos
+
+    public static function marcar_como_no_aprobado($codigo_curso, $carnet_usuario){
+        try{
+            $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
+            $usuario_curso_row->estado_curso = 1;
+            $usuario_curso_row->save();
+            return true;
+        } catch(Exception $e){
+            
+        } // catch
+        return false;
+    } // marcar_como_aprobado
+
+    public static function marcar_como_retra_unica($codigo_curso, $carnet_usuario){
+        try{
+            if(OperacionesCurso::validar_prerrequisitos($codigo_curso, $carnet_usuario)){
+                $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
+                $usuario_curso_row->estado_curso = 3;
+                $usuario_curso_row->save();
+                return true;
+            } // if
+        } catch(Exception $e){
+            
+        } // catch
+        return false;
+    } // marcar_como_retra_unica
+
+    public static function marcar_como_pre_post($codigo_curso, $carnet_usuario){
+        try{
+            if(OperacionesCurso::validar_prerrequisitos_pre_post($codigo_curso, $carnet_usuario)){
+                $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
+                $usuario_curso_row->estado_curso = 4;
+                $usuario_curso_row->save();
+                return true;
+            } // if
+        } catch(Exception $e){
+            
+        } // catch
+        return false;
+    } // marcar_como_retra_unica
+
+    public static function validar_prerrequisitos_pre_post($codigo_curso, $carnet_usuario){
+        $prerrequisito_rows = Prerrequisito::find()->where('post = :post', [':post' => $codigo_curso])->all();
+        foreach($prerrequisito_rows as $prerrequisito_row){
+            $usuario_curso_count = UsuarioCurso::find()->where('curso = :curso',[':curso' => $prerrequisito_row->pre])->andWhere('estado_curso > 1')->count();
+            if($usuario_curso_count == 0){
+                return false;
+            } // if
+            $creditos_usuario = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
+            if($prerrequisito_row->post0->creditos_necesarios > $creditos_usuario){
+                return false;
+            } // if
+            if($creditos_usuario < 215){
+                return false;
+            } // if
+            return false;
+        } // foreach
+        return true;
+    } // validar_prerrequisitos
+
+}

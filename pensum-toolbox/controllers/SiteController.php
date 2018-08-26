@@ -9,7 +9,12 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+
+use app\models\Curso;
+
 use app\utilities\Dashboard;
+use app\utilities\OperacionesCurso;
+use app\utilities\OperacionesCreditos;
 
 class SiteController extends Controller
 {
@@ -63,13 +68,69 @@ class SiteController extends Controller
     public function actionIndex()
     {
         // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
-        $carnet = 209900909; // USUARIO DE PRUEBAS
-        $data_arrs = Dashboard::get_cursos($carnet);
+        $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
+        $data_arrs = Dashboard::get_cursos($carnet_usuario);
 
         return $this->render('index', [
             'data_arrs' => $data_arrs,
         ]);
         //return $this->render('index');
+    }
+
+    public function actionAprobarCurso($codigo_curso){
+        // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
+        $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
+
+        $curso_row = Curso::find()->where('codigo = :codigo', [':codigo' => $codigo_curso])->one();
+        if(OperacionesCurso::marcar_como_aprobado($codigo_curso, $carnet_usuario)){
+            Yii::$app->session->setFlash('success', "Marcado como aprobado el curso: ".$curso_row->codigo." ".$curso_row->nombre);
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'No es posible marcar como aprobado el curso: '.$curso_row->codigo." ".$curso_row->nombre.", no se cumple con los prerrequisitos");
+        } // else
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionNoAprobarCurso($codigo_curso){
+        // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
+        $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
+
+        $curso_row = Curso::find()->where('codigo = :codigo', [':codigo' => $codigo_curso])->one();
+        if(OperacionesCurso::marcar_como_no_aprobado($codigo_curso, $carnet_usuario)){
+            Yii::$app->session->setFlash('success', "Marcado como no aprobado el curso: ".$curso_row->codigo." ".$curso_row->nombre);
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'No es posible marcar como no aprobado el curso: '.$curso_row->codigo." ".$curso_row->nombre.", no esta aprobado");
+        } // else
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionRetraUnica($codigo_curso){
+        // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
+        $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
+
+        $curso_row = Curso::find()->where('codigo = :codigo', [':codigo' => $codigo_curso])->one();
+        if(OperacionesCurso::marcar_como_retra_unica($codigo_curso, $carnet_usuario)){
+            Yii::$app->session->setFlash('success', "Marcado como retra unica el curso: ".$curso_row->codigo." ".$curso_row->nombre);
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'No es posible marcar como retra-unica el curso: '.$curso_row->codigo." ".$curso_row->nombre.", no se cumple con los prerrequisitos");
+        } // else
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionPrePost($codigo_curso){
+        // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
+        $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
+
+        $curso_row = Curso::find()->where('codigo = :codigo', [':codigo' => $codigo_curso])->one();
+        if(OperacionesCurso::marcar_como_pre_post($codigo_curso, $carnet_usuario)){
+            Yii::$app->session->setFlash('success', "Marcado como pre-post el curso: ".$curso_row->codigo." ".$curso_row->nombre);
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'No es posible marcar como pre-post el curso: '.$curso_row->codigo." ".$curso_row->nombre.", no se cumple con los prerrequisitos");
+        } // else
+
+        return $this->redirect(['index']);
     }
 
     /**

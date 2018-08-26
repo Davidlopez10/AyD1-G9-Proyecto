@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Html;
 
 $this->title = 'Dashboard';
 ?>
@@ -47,16 +48,24 @@ $this->title = 'Dashboard';
                         <?php foreach($data_arr['cursos'] as $curso){ ?>
                             <section id="curso<?php $curso->curso0->codigo; ?>" class="row">
                                 <div class="list-group list-group-horizontal">
-                                    <div class="list-group-item col-lg-2"><?php echo $curso->curso0->codigo; ?></div>
-                                    <div class="list-group-item col-lg-4 <?php 
+                                    <div class="list-group-item col-lg-1 btn">
+                                        <!--span class="glyphicon glyphicon-barcode" ></span-->
+                                        <?php echo $curso->curso0->codigo; ?>
+                                    </div>
+                                    <div class="list-group-item col-lg-4 btn <?php 
                                         if($curso->estado_curso == 2)
                                             echo "list-group-item-success";
                                         else if($curso->estado_curso == 3)
                                             echo "list-group-item-danger";
                                         else if($curso->estado_curso == 4)
                                             echo "list-group-item-info";
-                                    ?>"><?php echo $curso->curso0->nombre; ?><span class="badge badge-pill badge-dark"><?php echo $curso->curso0->creditos; ?> creditos</span></div>
-                                    <div class="list-group-item col-lg-3">
+                                    ?>">
+                                        <!--span class="glyphicon glyphicon-align-justify" ></span-->
+                                        <?php echo $curso->curso0->nombre; ?>
+                                        <span class="badge badge-pill badge-dark"><?php echo $curso->curso0->creditos; ?> creditos</span>
+                                    </div>
+                                    <div class="list-group-item col-lg-2 btn">
+                                        <!--span class="glyphicon glyphicon-check" ></span-->
                                         <?php 
                                             if(!$curso->curso0->prerrequisitos0){
                                                 echo "&nbsp";
@@ -70,6 +79,35 @@ $this->title = 'Dashboard';
                                         }  // foreach
                                         ?>
                                     </div>
+                                    <div class="list-group-item col-lg-2">
+                                        <?php 
+                                            if($curso->estado_curso != 2){
+                                                echo Html::a('Aprobar', ['/site/aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                            }else{
+                                                echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
+                                            } // else
+                                        ?>
+                                        <!--span class="glyphicon glyphicon-ok"></span-->
+                                    </div>
+                                    <div class="list-group-item col-lg-2">
+                                        <?php 
+                                            if($curso->estado_curso != 3){
+                                                echo Html::a('Retra Unica', ['/site/retra-unica', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                            }else{
+                                                echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
+                                            } // else
+                                        ?>
+                                        <!--span class="glyphicon glyphicon-ok"></span-->
+                                    </div>
+                                    <!--div class="list-group-item col-lg-1">
+                                        <?php 
+                                            if($curso->estado_curso != 4){
+                                                echo Html::a('Pre-Post', ['/site/pre-post', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                            }else{
+                                                echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
+                                            } // else
+                                        ?>
+                                    </div-->
                                 </div>
                             </section>
                         <?php } // foreach ?>
