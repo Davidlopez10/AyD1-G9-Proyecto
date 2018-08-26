@@ -25,16 +25,30 @@ $this->title = 'Dashboard';
 </style>
 <div class="site-index">
 
-    <!--div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div-->
-
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="row">
+                <h4>Carnet: <?php echo $carnet_usuario; ?></h4>
+            </div>
+            <div class="row">
+                <h4>Total de creditos: <?php echo $suma_creditos; ?></h4>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="row">
+                <h2 class="page-header">Modalidades Disponibles&nbsp;&nbsp;<a data-toggle="collapse" data-target="#modalidades" class="badge badge-danger">Toggle</a></h2>
+                <div id="modalidades" class="collapse">
+                    <ul class="list-group">
+                    <?php foreach($modalidades as $modalidad){ ?>
+                        <li class="list-group-item"><?php echo $modalidad; ?></li>
+                    <?php } // foreach ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="body-content">
-
+        <h2 class="page-header">Listado de Cursos</h2>
         <div class="row">
             <?php
                 foreach($data_arrs as $data_arr){
@@ -42,7 +56,6 @@ $this->title = 'Dashboard';
             <div clas="row">
                     <div class="row">
                         <h3 class="colo-lg-8"><?php echo $data_arr['area']->nombre; ?>&nbsp;&nbsp;<a data-toggle="collapse" data-target="#area<?php echo $data_arr['area']->id; ?>" class="badge badge-danger">Toggle</a></h3>
-                        
                     </div>
                     <div id="area<?php echo $data_arr['area']->id; ?>" class="collapse in">
                         <?php foreach($data_arr['cursos'] as $curso){ ?>

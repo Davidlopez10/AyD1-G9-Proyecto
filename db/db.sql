@@ -134,6 +134,7 @@ INSERT INTO prerrequisito (pre, post) VALUES ('795','962');
 INSERT INTO prerrequisito (pre, post) VALUES ('960','771');
 INSERT INTO prerrequisito (pre, post) VALUES ('770','771');
 INSERT INTO prerrequisito (pre, post) VALUES ('795','771');
+INSERT INTO prerrequisito (pre, post) VALUES ('103','795');
 INSERT INTO prerrequisito (pre, post) VALUES ('107','771');
 INSERT INTO prerrequisito (pre, post) VALUES ('019','010');
 INSERT INTO prerrequisito (pre, post) VALUES ('107','112');
