@@ -47,6 +47,25 @@ $this->title = 'Dashboard';
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <h2 class="page-header">Avance en Areas&nbsp;&nbsp;<a data-toggle="collapse" data-target="#areas" class="badge badge-danger">Toggle</a></h2>
+                <div id="areas" class="collapse in">
+                    <?php foreach($data_arrs as $data_arr){ ?>
+                        <div class="col-lg-3">
+                            <?php echo $data_arr['area']->nombre; ?>
+                        </div>
+                        <div class="progress col-lg-7">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $data_arr['porcentaje']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $data_arr['porcentaje']; ?>%">
+                                <span class="sr-only"><?php echo $data_arr['porcentaje']; ?>% Completado</span>
+                            </div>
+                        </div>
+                    <?php } // foreach ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="body-content">
         <h2 class="page-header">Listado de Cursos</h2>
         <div class="row">

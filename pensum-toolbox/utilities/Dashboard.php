@@ -17,6 +17,7 @@ class Dashboard{
             
             $temp['area'] = $area_row;
             $temp['cursos'] = $cursos;
+            $temp['porcentaje'] = OperacionesArea::get_porcentaje_area($area_row->id, $carnet_usuario);
             $result[] = $temp;
         } // foreach
 
