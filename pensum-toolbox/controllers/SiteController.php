@@ -72,7 +72,7 @@ class SiteController extends Controller
         $data_arrs = Dashboard::get_cursos($carnet_usuario);
 
         $suma_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
-        $modalidades = OperacionesCreditos::get_modalidades_disponibles(250);
+        $modalidades = OperacionesCreditos::get_modalidades_disponibles($suma_creditos);
 
         return $this->render('index', [
             'data_arrs' => $data_arrs,
