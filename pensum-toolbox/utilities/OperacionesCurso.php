@@ -100,7 +100,7 @@ class OperacionesCurso{
     public static function get_cursos_disponibles($carnet_usuario){
         $total_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
 
-        $query_string = "SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = ".$carnet_usuario." AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= ".$total_creditos;
+        $query_string = "SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = ".$carnet_usuario." AND UC.estado_curso = 2 AND CPOST.creditos_necesarios <= ".$total_creditos;
 
         $connection = Yii::$app->getDb();
         $command = $connection->createCommand($query_string);

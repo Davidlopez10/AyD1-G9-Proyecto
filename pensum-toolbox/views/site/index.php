@@ -36,6 +36,16 @@ $this->title = 'Dashboard';
         </div>
         <div class="col-lg-8">
             <div class="row">
+                <h2 class="page-header">Cursos Disponibles&nbsp;&nbsp;<a data-toggle="collapse" data-target="#cursosdisp" class="badge badge-danger">Toggle</a></h2>
+                <div id="cursosdisp" class="collapse in">
+                    <ul class="list-group">
+                    <?php foreach($cursos_disponibles as $cursos_disponible){ ?>
+                        <li class="list-group-item"><?php echo $cursos_disponible['nombre']; ?></li>
+                    <?php } // foreach ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
                 <h2 class="page-header">Modalidades Disponibles&nbsp;&nbsp;<a data-toggle="collapse" data-target="#modalidades" class="badge badge-danger">Toggle</a></h2>
                 <div id="modalidades" class="collapse">
                     <ul class="list-group">
