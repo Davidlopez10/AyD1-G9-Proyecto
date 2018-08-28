@@ -107,6 +107,6 @@ class OperacionesCurso{
         $result = $command->queryAll();
         return $result;
         //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
-    }
+    } // get_cursos_disponibles
 
 }
