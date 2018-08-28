@@ -5,6 +5,9 @@ Version Actual: 1.2.0
 
 Release Notes:
 
+1.2.1:
+    * Se corrigio el problema en el que no se mostraba los cursos disponibles si el prerrequisito es retra unica.
+
 1.2.0:
     * En el dashboard, se muestran los cursos disponibles para cursar
 
