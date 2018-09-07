@@ -28,7 +28,7 @@ class OperacionesCreditosTest extends \Codeception\Test\Unit
     }
 
     public function testConModalidadesDisponibles(){
-        $modalidades = OperacionesCreditos::get_modalidades_disponibles(32);
+        $modalidades = OperacionesCreditos::get_modalidades_disponibles(36);
         $this->assertNotNull($modalidades);
     }
 
