@@ -110,7 +110,7 @@ class OperacionesCurso{
                       AND UC1.estado_curso < 2
           )
           AND UC.curso = C.codigo
-              AND UC.usuario = 209900909
+              AND UC.usuario = ".$carnet_usuario."
               AND UC.estado_curso < 2
               AND C.creditos_necesarios <= ".$total_creditos;
 
@@ -122,5 +122,22 @@ class OperacionesCurso{
         //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     } // get_cursos_disponibles
 
+    public static function get_cursos_disponibles_asignacion($carnet_usuario, $cursos){
+        $bandera = true;
+        foreach ($cursos as &$curso) {
+            $bandera = $bandera && OperacionesCurso::validar_prerrequisitos($curso, $carnet_usuario);
+            if(!$bandera){
+                return;
+            }
+        }
+        foreach ($cursos as &$curso) {
+            OperacionesCurso::marcar_como_aprobado($curso, $carnet_usuario);
+        }
+        $resultado = OperacionesCurso::get_cursos_disponibles($carnet_usuario);
+        foreach ($cursos as &$curso) {
+            OperacionesCurso::marcar_como_no_aprobado($curso, $carnet_usuario);
+        }
+        return $resultado;
+    }
 
 }
