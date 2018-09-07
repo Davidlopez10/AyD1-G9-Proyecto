@@ -18,7 +18,7 @@ class OperacionesCurso{
                 return true;
             } // if
         } catch(Exception $e){
-            
+
         } // catch
         return false;
     } // marcar_como_aprobado
@@ -45,7 +45,7 @@ class OperacionesCurso{
             $usuario_curso_row->save();
             return true;
         } catch(Exception $e){
-            
+
         } // catch
         return false;
     } // marcar_como_aprobado
@@ -59,7 +59,7 @@ class OperacionesCurso{
                 return true;
             } // if
         } catch(Exception $e){
-            
+
         } // catch
         return false;
     } // marcar_como_retra_unica
@@ -73,7 +73,7 @@ class OperacionesCurso{
                 return true;
             } // if
         } catch(Exception $e){
-            
+
         } // catch
         return false;
     } // marcar_como_retra_unica
@@ -100,7 +100,20 @@ class OperacionesCurso{
     public static function get_cursos_disponibles($carnet_usuario){
         $total_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
 
-        $query_string = "SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = ".$carnet_usuario." AND UC.estado_curso > 1 AND CPOST.creditos_necesarios <= ".$total_creditos;
+        $query_string = "SELECT C.nombre FROM curso as C, usuario_curso as UC
+        WHERE NOT EXISTS (
+          SELECT CPRE.codigo from curso as CPRE, prerrequisito as P, usuario_curso as UC1
+            WHERE CPRE.codigo = P.pre
+              AND C.codigo = P.post
+                      AND UC1.curso = CPRE.codigo
+                      AND UC1.usuario = ".$carnet_usuario."
+                      AND UC1.estado_curso < 2
+          )
+          AND UC.curso = C.codigo
+              AND UC.usuario = 209900909
+              AND UC.estado_curso < 2
+              AND C.creditos_necesarios <= ".$total_creditos;
+
 
         $connection = Yii::$app->getDb();
         $command = $connection->createCommand($query_string);
@@ -108,5 +121,6 @@ class OperacionesCurso{
         return $result;
         //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     } // get_cursos_disponibles
+
 
 }
