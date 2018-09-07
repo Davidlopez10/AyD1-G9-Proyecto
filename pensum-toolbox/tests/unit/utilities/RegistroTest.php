@@ -14,6 +14,11 @@ class RegistroTest extends \Codeception\Test\Unit
 
     public function testRegistroDeContrasenaIncorrecta(){
         $longitud = Registro::get_longitud_contrasena($this->contra_de_pruebas);
+        $this->assertTrue($longitud <= $longitud_contrasena);
+    }
+
+    public function testRegistroDeContrasenaCorrecta(){
+        $longitud = Registro::get_longitud_contrasena($this->contra_de_pruebas);
         $this->assertTrue($longitud >= $longitud_contrasena);
     }
 
