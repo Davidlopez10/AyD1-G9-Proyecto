@@ -2,7 +2,7 @@
 
 namespace tests\utilities;
 
-use app\utilities\OperacionesAsignacion;
+use app\utilities\OperacionesCurso;
 
 class OperacionesAsignacionTest extends \Codeception\Test\Unit
 {
@@ -19,7 +19,7 @@ class OperacionesAsignacionTest extends \Codeception\Test\Unit
 
 
     public function testTratarDeVisualizarAsignacionSinPrerrequisitos(){
-        $result = OperacionesAsignacion::get_cursos_con_asignacion($this->usuario_de_pruebas, array($this->mate_intermedia_3));
+        $result = OperacionesCurso::get_cursos_disponibles_asignacion($this->usuario_de_pruebas, array($this->mate_intermedia_3));
         $this->assertEmpty($result);
     }
 
@@ -28,7 +28,7 @@ class OperacionesAsignacionTest extends \Codeception\Test\Unit
     * @depends testTratarDeVisualizarAsignacionSinPrerrequisitos()
     */
     public function testTratarDeVisualizarAsignacion(){
-        $result = OperacionesAsignacion::get_cursos_con_asignacion($this->usuario_de_pruebas, array($this->estadistica1, $this->$idioma_tecnico_2, $this->mate_basica_2));
+        $result = OperacionesCurso::get_cursos_disponibles_asignacion($this->usuario_de_pruebas, array($this->estadistica1, $this->$idioma_tecnico_2, $this->mate_basica_2));
         $this->assertNotEmpty($result);
     }
 }
