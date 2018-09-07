@@ -11,7 +11,7 @@ class OperacionesAsignacionTest extends \Codeception\Test\Unit
     private $usuario_inexistente = -1;
     private $estadistica_1 = '732';
     private $idioma_tecnico_3 = '0009';
-    private $deportes_2 = '040'
+    private $deportes_2 = '040';
 
 
 
