@@ -7,7 +7,7 @@ use app\utilities\OperacionesCreditos;
 
 class OperacionesCreditosTest extends \Codeception\Test\Unit
 {
-    
+
     private $usuario_de_pruebas = 209900909;
     private $mate_basica_1 = '101';
 
@@ -31,5 +31,8 @@ class OperacionesCreditosTest extends \Codeception\Test\Unit
         $modalidades = OperacionesCreditos::get_modalidades_disponibles(32);
         $this->assertNotNull($modalidades);
     }
-
+    public function testNoMasDeSieteCreditosExtracurriculares(){
+      $creditosExtra = OperacionesCurso::get_total_creditosextra_usuario($this->usuario_de_pruebas);
+      $this->assertEquals($creditosExtra,0);
+    }
 }
