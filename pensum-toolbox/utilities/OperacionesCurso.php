@@ -100,7 +100,7 @@ class OperacionesCurso{
     public static function get_cursos_disponibles($carnet_usuario){
         $total_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
 
-        $query_string = "SELECT C.nombre FROM curso as C, usuario_curso as UC
+        $query_string = "SELECT C.nombre,C.codigo FROM curso as C, usuario_curso as UC
         WHERE NOT EXISTS (
           SELECT CPRE.codigo from curso as CPRE, prerrequisito as P, usuario_curso as UC1
             WHERE CPRE.codigo = P.pre
