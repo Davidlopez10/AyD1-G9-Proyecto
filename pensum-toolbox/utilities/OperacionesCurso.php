@@ -122,16 +122,23 @@ class OperacionesCurso{
         //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     } // get_cursos_disponibles
 
+
+    /**
+     * Obtiene los cursos disponibles segun cuales se aprueben
+     * @param  [type] $carnet_usuario [description]
+     * @param  [type] $cursos         [description]
+     * @return [type]                 [description]
+     */
     public static function get_cursos_disponibles_asignacion($carnet_usuario, $cursos){
         $bandera = true;
         foreach ((array)$cursos as &$curso) {
-            $bandera = $bandera && OperacionesCurso::validar_prerrequisitos($curso, $carnet_usuario);
+            $bandera = $bandera && OperacionesCurso::validar_prerrequisitos_asignacion($curso, $carnet_usuario);
             if(!$bandera){
                 return;
             }
         }
         foreach ((array)$cursos as &$curso) {
-            OperacionesCurso::marcar_como_aprobado($curso, $carnet_usuario);
+            OperacionesCurso::marcar_como_aprobado_asignacion($curso, $carnet_usuario);
         }
         $resultado = OperacionesCurso::get_cursos_disponibles($carnet_usuario);
         foreach ((array)$cursos as &$curso) {
@@ -139,5 +146,46 @@ class OperacionesCurso{
         }
         return $resultado;
     }
+
+    /**
+     * Validar prerequisitos para asignacion (este incluye las retras unicas)
+     * @param  [type] $codigo_curso   [description]
+     * @param  [type] $carnet_usuario [description]
+     * @return [type]                 [description]
+     */
+    public static function validar_prerrequisitos_asignacion($codigo_curso, $carnet_usuario){
+        $prerrequisito_rows = Prerrequisito::find()->where('post = :post', [':post' => $codigo_curso])->all();
+        foreach($prerrequisito_rows as $prerrequisito_row){
+            $usuario_curso_count = UsuarioCurso::find()->where('curso = :curso',[':curso' => $prerrequisito_row->pre])->andWhere('estado_curso > 1')->count();
+            if($usuario_curso_count == 0){
+                return false;
+            } // if
+            $creditos_usuario = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
+            if($prerrequisito_row->post0->creditos_necesarios > $creditos_usuario){
+                return false;
+            } // if
+        } // foreach
+        return true;
+    } // validar_prerrequisitos para asignacion
+
+    /**
+     * Marcar como aprobado pero para asignacion asi que es forzado
+     * @param  [type] $codigo_curso   [description]
+     * @param  [type] $carnet_usuario [description]
+     * @return [type]                 [description]
+     */
+    public static function marcar_como_aprobado_asignacion($codigo_curso, $carnet_usuario){
+        try{
+            if(OperacionesCurso::validar_prerrequisitos_asignacion($codigo_curso, $carnet_usuario)){
+                $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
+                $usuario_curso_row->estado_curso = 2;
+                $usuario_curso_row->save();
+                return true;
+            } // if
+        } catch(Exception $e){
+
+        } // catch
+        return false;
+    } // marcar_como_aprobado
 
 }
