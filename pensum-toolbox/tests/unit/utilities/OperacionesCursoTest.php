@@ -92,4 +92,8 @@ class OperacionesCursoTest extends \Codeception\Test\Unit
         $result = OperacionesCurso::get_actividades_disponibles($this->usuario_de_pruebas);
         $this->assertNotEmpty($result);
     }
+    public function testListaUsarioCursoActividadesExtracurriculares(){
+        $result = OperacionesCurso::get_usuario_cursos_ae($this->usuario_de_pruebas);
+        $this->assertNotEmpty($result);
+    }
 }

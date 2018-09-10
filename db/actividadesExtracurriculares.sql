@@ -24,7 +24,8 @@ INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5004', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5005', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5006', 1);
-
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5007', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5008', 1);
 
 select * 
 from usuario_curso
