@@ -45,5 +45,19 @@ class OperacionesCreditos{
         } // if
         return $modalidades;
     } // get_modalidades_disponibles
-    
+
+    public static function get_total_creditosextra_usuario($carnet_usuario){
+      $usuario_actividad_rows = UsuarioCurso::find()->where('usuario = :usuario', [':usuario' => $carnet_usuario])->andWhere('estado_curso = 2')->all();
+      $suma_creditos = 0;
+      foreach($usuario_actividad_rows as $usuario_actividad_row){
+          if ($usuario_actividad_row->curso0->area ==8){
+            $suma_creditos = $suma_creditos + $usuario_actividad_row->curso0->creditos;
+          }
+      }
+      if($suma_creditos <= 7){
+        return $suma_creditos;
+      }
+      return -1;
+    }
+
 }
