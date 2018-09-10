@@ -124,17 +124,17 @@ class OperacionesCurso{
 
     public static function get_cursos_disponibles_asignacion($carnet_usuario, $cursos){
         $bandera = true;
-        foreach ($cursos as &$curso) {
+        foreach ((array)$cursos as &$curso) {
             $bandera = $bandera && OperacionesCurso::validar_prerrequisitos($curso, $carnet_usuario);
             if(!$bandera){
                 return;
             }
         }
-        foreach ($cursos as &$curso) {
+        foreach ((array)$cursos as &$curso) {
             OperacionesCurso::marcar_como_aprobado($curso, $carnet_usuario);
         }
         $resultado = OperacionesCurso::get_cursos_disponibles($carnet_usuario);
-        foreach ($cursos as &$curso) {
+        foreach ((array)$cursos as &$curso) {
             OperacionesCurso::marcar_como_no_aprobado($curso, $carnet_usuario);
         }
         return $resultado;

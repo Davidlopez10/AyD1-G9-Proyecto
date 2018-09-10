@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Asignacion Temporal';
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
@@ -51,11 +52,23 @@ enableFiltering: true
             <div class="row">
                 <h2 class="page-header">Cursos Disponibles&nbsp;&nbsp;</h2>
                 <div id="cursosdisp" class="collapse in">
-                    <select id="cursos" name="cursos[]" multiple >
-                        <?php foreach($cursos_disponibles as $cursos_disponible){ ?>
-                            <option value="<?php echo $cursos_disponible['codigo']; ?>"><?php echo $cursos_disponible['nombre']; ?></option>
-                        <?php } // foreach ?>
-                    </select>
+                    <?php
+                    $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['asignacion/ver-siguientes'], 'method' => 'post']);
+                    ?>
+                    <div class="form-group">
+                        <select id="cursos" name="cursos[]" multiple >
+                            <?php foreach($cursos_disponibles as $cursos_disponible){ ?>
+                                <option value="<?php echo $cursos_disponible['codigo']; ?>"><?php echo $cursos_disponible['nombre']; ?></option>
+                            <?php } // foreach ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Ver cursos siguientes</button>
+                    </div>
+                    <?php
+                    ActiveForm::end();
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -64,7 +77,7 @@ enableFiltering: true
                 <h2 class="page-header">Cursos siguientes&nbsp;&nbsp;</h2>
                 <div id="cursosdisp" class="collapse in">
                     <ul class="list-group">
-                    <?php foreach($cursos_siguientes as $cursos_siguiente){ ?>
+                    <?php foreach((array)$cursos_siguientes as $cursos_siguiente){ ?>
                         <li class="list-group-item"><?php echo $cursos_siguiente['nombre']; ?></li>
                     <?php } // foreach ?>
                     </ul>
@@ -72,4 +85,5 @@ enableFiltering: true
             </div>
         </div>
     </div>
+
 </div>
