@@ -33,6 +33,6 @@ class OperacionesCreditosTest extends \Codeception\Test\Unit
     }
     public function testNoMasDeSieteCreditosExtracurriculares(){
       $creditosExtra = OperacionesCreditos::get_total_creditosextra_usuario($this->usuario_de_pruebas);
-      $this->assertEquals($creditosExtra,0);
+      $this->assertEquals($creditosExtra,7);
     }
 }

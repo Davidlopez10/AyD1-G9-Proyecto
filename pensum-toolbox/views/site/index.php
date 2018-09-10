@@ -81,6 +81,7 @@ $this->title = 'Dashboard';
         <div class="row">
             <?php
                 foreach($data_arrs as $data_arr){
+                  if($data_arr['area']->id!=8){
             ?>
             <div clas="row">
                     <div class="row">
@@ -94,7 +95,7 @@ $this->title = 'Dashboard';
                                         <!--span class="glyphicon glyphicon-barcode" ></span-->
                                         <?php echo $curso->curso0->codigo; ?>
                                     </div>
-                                    <div class="list-group-item col-lg-4 btn <?php 
+                                    <div class="list-group-item col-lg-4 btn <?php
                                         if($curso->estado_curso == 2)
                                             echo "list-group-item-success";
                                         else if($curso->estado_curso == 3)
@@ -108,23 +109,23 @@ $this->title = 'Dashboard';
                                     </div>
                                     <div class="list-group-item col-lg-2 btn">
                                         <!--span class="glyphicon glyphicon-check" ></span-->
-                                        <?php 
+                                        <?php
                                             if(!$curso->curso0->prerrequisitos0){
                                                 echo "&nbsp";
                                             } // if
                                             foreach($curso->curso0->prerrequisitos0 as $prerrequisito){
-                                        ?> 
+                                        ?>
                                             <a data-toggle="tooltip" data-placement="top" title="<?php echo $prerrequisito->pre0->nombre; ?>">
                                                 <?php echo $prerrequisito->pre; ?>
-                                            </a>       
-                                        <?php 
+                                            </a>
+                                        <?php
                                         }  // foreach
                                         ?>
                                     </div>
                                     <div class="list-group-item col-lg-2">
-                                        <?php 
+                                        <?php
                                             if($curso->estado_curso != 2){
-                                                echo Html::a('Aprobar', ['/site/aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                                echo Html::a('Aprobar', ['/site/aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             }else{
                                                 echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             } // else
@@ -132,9 +133,9 @@ $this->title = 'Dashboard';
                                         <!--span class="glyphicon glyphicon-ok"></span-->
                                     </div>
                                     <div class="list-group-item col-lg-2">
-                                        <?php 
+                                        <?php
                                             if($curso->estado_curso != 3){
-                                                echo Html::a('Retra Unica', ['/site/retra-unica', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                                echo Html::a('Retra Unica', ['/site/retra-unica', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             }else{
                                                 echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             } // else
@@ -142,9 +143,9 @@ $this->title = 'Dashboard';
                                         <!--span class="glyphicon glyphicon-ok"></span-->
                                     </div>
                                     <!--div class="list-group-item col-lg-1">
-                                        <?php 
+                                        <?php
                                             if($curso->estado_curso != 4){
-                                                echo Html::a('Pre-Post', ['/site/pre-post', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']); 
+                                                echo Html::a('Pre-Post', ['/site/pre-post', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             }else{
                                                 echo Html::a('No Aprobar', ['/site/no-aprobar-curso', 'codigo_curso' => $curso->curso0->codigo], ['class'=>'']);
                                             } // else
@@ -155,7 +156,8 @@ $this->title = 'Dashboard';
                         <?php } // foreach ?>
                     </div>
             </div>
-            <?php 
+            <?php
+                  }//endif
                 } // foreach
             ?>
         </div>
