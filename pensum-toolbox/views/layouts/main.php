@@ -39,13 +39,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-<<<<<<< HEAD
             // ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Asignacion Temporal', 'url' => ['/asignacion/index']],
-=======
-           ['label' => 'Actividades Extra', 'url' => ['/extra/index']],
-            //['label' => 'About', 'url' => ['/site/about']],
->>>>>>> actividades_extracurriculares
+            ['label' => 'Actividades Extra', 'url' => ['/extra/index']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
@@ -85,4 +81,4 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php $this->endPage() ?>         
