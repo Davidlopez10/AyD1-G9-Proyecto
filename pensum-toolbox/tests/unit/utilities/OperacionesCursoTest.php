@@ -6,7 +6,7 @@ use app\utilities\OperacionesCurso;
 
 class OperacionesCursoTest extends \Codeception\Test\Unit
 {
-    
+
     private $usuario_de_pruebas = 209900909;
     private $usuario_inexistente = -1;
     private $mate_basica_1 = '101';
@@ -87,5 +87,13 @@ class OperacionesCursoTest extends \Codeception\Test\Unit
 
         $result = OperacionesCurso::marcar_como_no_aprobado($this->deportes_1,$this->usuario_de_pruebas);
         $this->assertTrue($result);
+    }
+    public function testListaDeActividadesDisponiblesDevuelveActividades(){
+        $result = OperacionesCurso::get_actividades_disponibles($this->usuario_de_pruebas);
+        $this->assertNotEmpty($result);
+    }
+    public function testListaUsarioCursoActividadesExtracurriculares(){
+        $result = OperacionesCurso::get_usuario_cursos_ae($this->usuario_de_pruebas);
+        $this->assertNotEmpty($result);
     }
 }

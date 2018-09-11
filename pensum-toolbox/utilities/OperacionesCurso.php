@@ -122,7 +122,6 @@ class OperacionesCurso{
         //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     } // get_cursos_disponibles
 
-
     /**
      * Obtiene los cursos disponibles segun cuales se aprueben
      * @param  [type] $carnet_usuario [description]
@@ -187,5 +186,21 @@ class OperacionesCurso{
         } // catch
         return false;
     } // marcar_como_aprobado
+
+    public static function get_actividades_disponibles($carnet_usuario){
+      $query_string2= "SELECT * from curso where area = 8;";
+      $connection = Yii::$app->getDb();
+      $command = $connection->createCommand($query_string2);
+      $result = $command->queryAll();
+      return $result;
+    }
+    
+    public static function get_usuario_cursos_ae($carnet_usuario){
+      $query_string= "SELECT * from usuario_curso where usuario = ".$carnet_usuario." AND curso IN (SELECT codigo from curso where area=8)";
+      $connection = Yii::$app->getDb();
+      $command = $connection->createCommand($query_string);
+      $result = $command->queryAll();
+      return $result;
+    }
 
 }
