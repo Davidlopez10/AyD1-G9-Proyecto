@@ -129,21 +129,34 @@ class OperacionesCurso{
      * @return [type]                 [description]
      */
     public static function get_cursos_disponibles_asignacion($carnet_usuario, $cursos){
-        $bandera = true;
-        foreach ((array)$cursos as &$curso) {
-            $bandera = $bandera && OperacionesCurso::validar_prerrequisitos_asignacion($curso, $carnet_usuario);
-            if(!$bandera){
-                return;
+      $total_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
+          $query_string = "SELECT C.nombre,C.codigo FROM curso as C, usuario_curso as UC
+          WHERE NOT EXISTS (
+            SELECT CPRE.codigo from curso as CPRE, prerrequisito as P, usuario_curso as UC1
+              WHERE CPRE.codigo = P.pre
+                AND C.codigo = P.post
+                        AND UC1.curso = CPRE.codigo
+                        AND UC1.usuario = ".$carnet_usuario."
+                        AND UC1.estado_curso < 2";
+            foreach ((array)$cursos as &$curso) {
+              $query_string .=" AND UC1.curso <> ".$curso;
             }
-        }
-        foreach ((array)$cursos as &$curso) {
-            OperacionesCurso::marcar_como_aprobado_asignacion($curso, $carnet_usuario);
-        }
-        $resultado = OperacionesCurso::get_cursos_disponibles($carnet_usuario);
-        foreach ((array)$cursos as &$curso) {
-            OperacionesCurso::marcar_como_no_aprobado($curso, $carnet_usuario);
-        }
-        return $resultado;
+
+            $query_string.= ")
+            AND UC.curso = C.codigo
+                AND UC.usuario = ".$carnet_usuario."
+                AND UC.estado_curso < 2
+                AND C.creditos_necesarios <= ".$total_creditos;
+
+            foreach ((array)$cursos as &$curso) {
+              $query_string .=" AND UC.curso <> ".$curso;
+            }
+
+          $connection = Yii::$app->getDb();
+          $command = $connection->createCommand($query_string);
+          $result = $command->queryAll();
+          return $result;
+          //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     }
 
     /**
@@ -194,7 +207,7 @@ class OperacionesCurso{
       $result = $command->queryAll();
       return $result;
     }
-    
+
     public static function get_usuario_cursos_ae($carnet_usuario){
       $query_string= "SELECT * from usuario_curso where usuario = ".$carnet_usuario." AND curso IN (SELECT codigo from curso where area=8)";
       $connection = Yii::$app->getDb();
