@@ -77,6 +77,9 @@ enableFiltering: true
                 <h2 class="page-header">Cursos siguientes&nbsp;&nbsp;</h2>
                 <div id="cursosdisp" class="collapse in">
                     <ul class="list-group">
+                      <?php foreach((array)$cursos_siguientes_nuevos as $cursos_siguientes_nuevo){ ?>
+                          <li class="list-group-item list-group-item-success"><?php echo $cursos_siguientes_nuevo['nombre']; ?></li>
+                      <?php } // foreach ?>
                     <?php foreach((array)$cursos_siguientes as $cursos_siguiente){ ?>
                         <li class="list-group-item"><?php echo $cursos_siguiente['nombre']; ?></li>
                     <?php } // foreach ?>

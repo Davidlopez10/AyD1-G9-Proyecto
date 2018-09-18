@@ -138,6 +138,41 @@ class OperacionesCurso{
                         AND UC1.curso = CPRE.codigo
                         AND UC1.usuario = ".$carnet_usuario."
                         AND UC1.estado_curso < 2";
+            $query_string.= ")
+            AND UC.curso = C.codigo
+                AND UC.usuario = ".$carnet_usuario."
+                AND UC.estado_curso < 2
+                AND C.creditos_necesarios <= ".$total_creditos;
+
+            foreach ((array)$cursos as &$curso) {
+              $query_string .=" AND UC.curso <> ".$curso;
+            }
+
+
+          $connection = Yii::$app->getDb();
+          $command = $connection->createCommand($query_string);
+          $result = $command->queryAll();
+          return $result;
+          //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
+    }
+
+
+    /**
+     * Obtiene los cursos disponibles nuevos que abren los cursos
+     * @param  [type] $carnet_usuario [description]
+     * @param  [type] $cursos         [description]
+     * @return [type]                 [description]
+     */
+    public static function get_cursos_disponibles_asignacion_nuevos($carnet_usuario, $cursos){
+      $total_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
+          $query_string = "SELECT C.nombre,C.codigo FROM curso as C, usuario_curso as UC
+          WHERE NOT EXISTS (
+            SELECT CPRE.codigo from curso as CPRE, prerrequisito as P, usuario_curso as UC1
+              WHERE CPRE.codigo = P.pre
+                AND C.codigo = P.post
+                        AND UC1.curso = CPRE.codigo
+                        AND UC1.usuario = ".$carnet_usuario."
+                        AND UC1.estado_curso < 2";
             foreach ((array)$cursos as &$curso) {
               $query_string .=" AND UC1.curso <> ".$curso;
             }
@@ -151,6 +186,20 @@ class OperacionesCurso{
             foreach ((array)$cursos as &$curso) {
               $query_string .=" AND UC.curso <> ".$curso;
             }
+        $query_string .=" AND UC.curso NOT IN (
+			SELECT C.codigo FROM curso as C, usuario_curso as UC
+			WHERE NOT EXISTS (
+				SELECT CPRE.codigo from curso as CPRE, prerrequisito as P, usuario_curso as UC1
+					WHERE CPRE.codigo = P.pre
+						AND C.codigo = P.post
+						AND UC1.curso = CPRE.codigo
+						AND UC1.usuario = 209900909
+						AND UC1.estado_curso < 2
+			)
+				AND UC.curso = C.codigo
+				AND UC.usuario = 209900909
+				AND UC.estado_curso < 2
+        )";
 
           $connection = Yii::$app->getDb();
           $command = $connection->createCommand($query_string);
@@ -159,46 +208,6 @@ class OperacionesCurso{
           //SELECT CPOST.nombre FROM curso CPRE, curso CPOST, usuario_curso UC, prerrequisito P WHERE P.pre = CPRE.codigo AND P.post = CPOST.codigo AND CPRE.codigo = UC.curso AND UC.usuario = 209900909 AND UC.estado_curso = 2 AND CPOST.creditos_necesarios >= 0;
     }
 
-    /**
-     * Validar prerequisitos para asignacion (este incluye las retras unicas)
-     * @param  [type] $codigo_curso   [description]
-     * @param  [type] $carnet_usuario [description]
-     * @return [type]                 [description]
-     */
-    public static function validar_prerrequisitos_asignacion($codigo_curso, $carnet_usuario){
-        $prerrequisito_rows = Prerrequisito::find()->where('post = :post', [':post' => $codigo_curso])->all();
-        foreach($prerrequisito_rows as $prerrequisito_row){
-            $usuario_curso_count = UsuarioCurso::find()->where('curso = :curso',[':curso' => $prerrequisito_row->pre])->andWhere('estado_curso > 1')->count();
-            if($usuario_curso_count == 0){
-                return false;
-            } // if
-            $creditos_usuario = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
-            if($prerrequisito_row->post0->creditos_necesarios > $creditos_usuario){
-                return false;
-            } // if
-        } // foreach
-        return true;
-    } // validar_prerrequisitos para asignacion
-
-    /**
-     * Marcar como aprobado pero para asignacion asi que es forzado
-     * @param  [type] $codigo_curso   [description]
-     * @param  [type] $carnet_usuario [description]
-     * @return [type]                 [description]
-     */
-    public static function marcar_como_aprobado_asignacion($codigo_curso, $carnet_usuario){
-        try{
-            if(OperacionesCurso::validar_prerrequisitos_asignacion($codigo_curso, $carnet_usuario)){
-                $usuario_curso_row = UsuarioCurso::find()->where('curso = :curso', [':curso' => $codigo_curso])->andWhere('usuario = :usuario', [':usuario' => $carnet_usuario])->one();
-                $usuario_curso_row->estado_curso = 2;
-                $usuario_curso_row->save();
-                return true;
-            } // if
-        } catch(Exception $e){
-
-        } // catch
-        return false;
-    } // marcar_como_aprobado
 
     public static function get_actividades_disponibles($carnet_usuario){
       $query_string2= "SELECT * from curso where area = 8;";
