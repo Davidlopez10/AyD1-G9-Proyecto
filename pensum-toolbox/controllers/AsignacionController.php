@@ -13,11 +13,13 @@ class AsignacionController extends \yii\web\Controller
       $cursos_disponibles = OperacionesCurso::get_cursos_disponibles($carnet_usuario);
       $cursos_siguientes = array();
       $cursos_siguientes_nuevos = array();
+      $cursos_marcados = array();
       return $this->render('index', [
           'carnet_usuario' => $carnet_usuario,
           'cursos_disponibles' => $cursos_disponibles,
           'cursos_siguientes' => $cursos_siguientes,
-          'cursos_siguientes_nuevos' => $cursos_siguientes_nuevos
+          'cursos_siguientes_nuevos' => $cursos_siguientes_nuevos,
+          'cursos_marcados' => $cursos_marcados
         ]);
     }
 
@@ -33,7 +35,8 @@ class AsignacionController extends \yii\web\Controller
             'carnet_usuario' => $carnet_usuario,
             'cursos_disponibles' => $cursos_disponibles,
             'cursos_siguientes' => $cursos_siguientes,
-            'cursos_siguientes_nuevos' => $cursos_siguientes_nuevos
+            'cursos_siguientes_nuevos' => $cursos_siguientes_nuevos,
+            'cursos_marcados' => $cursos
           ]);
     }
 
