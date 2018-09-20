@@ -23,4 +23,52 @@ class AcceptanceTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+
+    /**
+     * @Given I want to signup
+     */
+    public function iWantToSignup()
+    {
+        $this->amOnPage("/signup.php");
+        //throw new \Codeception\Exception\Incomplete("Step `I want to signup` is not defined");
+    }
+
+   /**
+    * @When I set up a password with :num1 characters
+    */
+    public function iSetUpAPasswordWithCharacters($num1)
+    {
+        $pass = "";
+        $count = intval($num1);
+        while($count > 0){
+            $pass .= "a";
+            $count = $count - 1;
+        } // while
+        $this->fillField(['name' => 'carnet'], '1');
+        $this->fillField(['name' => 'nombre'], 'TEST');
+        $this->fillField(['name' => 'apellido'], 'TEST');
+        $this->fillField(['name' => 'email'], 'test@mail.com');
+        $this->fillField(['name' => 'password'], $pass);
+        $this->click('Submit');
+        //throw new \Codeception\Exception\Incomplete("Step `I set up a password with :num1:num2 characters` is not defined");
+    }
+
+   /**
+    * @Then I should be able to signup
+    */
+    public function iShouldBeAbleToSignup()
+    {
+        $this->See('Sign Up');
+        //throw new \Codeception\Exception\Incomplete("Step `I should be able to signup` is not defined");
+    }
+
+   /**
+    * @Then I should not be able to signup
+    */
+    public function iShouldNotBeAbleToSignup()
+    {
+        $this->dontSee('Sign Up');  
+        //throw new \Codeception\Exception\Incomplete("Step `I should not be able to signup` is not defined");
+    }
+
 }

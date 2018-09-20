@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	carnet INT UNSIGNED NOT NULL,
 	nombres VARCHAR(255) NOT NULL,
 	apellidos VARCHAR(255) NOT NULL,
+	contrasena VARCHAR(255) NOT NULL,
 	PRIMARY KEY (carnet)
 );
 
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS tarea(
 	FOREIGN KEY (post) REFERENCES curso(codigo)
 );*/
 
-INSERT INTO usuario(carnet, nombres, apellidos) VALUES ('209900909', 'USUARIO', 'PRUEBA');
+INSERT INTO usuario(carnet, nombres, apellidos) VALUES ('209900909', 'USUARIO', 'PRUEBA', 'superuser123', '201404007@ingenieria.usac.edu.gt');
 
 INSERT INTO area (nombre) VALUES ('Metodologia de Sistemas');
 INSERT INTO area (nombre) VALUES ('Ciencias de la Computacion');
