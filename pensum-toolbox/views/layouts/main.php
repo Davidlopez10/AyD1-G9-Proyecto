@@ -41,6 +41,7 @@ AppAsset::register($this);
         'items' => [
             // ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Asignacion Temporal', 'url' => ['/asignacion/index']],
+            ['label' => 'Actividades Extra', 'url' => ['/extra/index']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
@@ -80,4 +81,4 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php $this->endPage() ?>         
