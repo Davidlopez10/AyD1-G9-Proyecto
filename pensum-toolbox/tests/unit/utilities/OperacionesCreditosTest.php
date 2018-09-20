@@ -31,8 +31,10 @@ class OperacionesCreditosTest extends \Codeception\Test\Unit
         $modalidades = OperacionesCreditos::get_modalidades_disponibles(32);
         $this->assertNotNull($modalidades);
     }
-    /*public function testNoMasDeSieteCreditosExtracurriculares(){
+    
+    public function testNoMasDeSieteCreditosExtracurriculares(){
       $creditosExtra = OperacionesCreditos::get_total_creditosextra_usuario($this->usuario_de_pruebas);
-      $this->assertEquals($creditosExtra,7);
-    }*/
+
+      $this->assertTrue($creditosExtra <= 7);
+    }
 }
