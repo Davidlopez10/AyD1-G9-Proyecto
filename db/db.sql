@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 	carnet INT UNSIGNED NOT NULL,
 	nombres VARCHAR(255) NOT NULL,
 	apellidos VARCHAR(255) NOT NULL,
-	contrasena VARCHAR(255) NOT NULL,
+	contrasena VARCHAR(255),
+	correo VARCHAR(255),
 	PRIMARY KEY (carnet)
 );
 

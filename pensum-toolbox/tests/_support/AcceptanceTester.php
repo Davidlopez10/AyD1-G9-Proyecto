@@ -29,7 +29,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iWantToSignup()
     {
-        $this->amOnPage("/signup.php");
+        $this->amOnPage("/index.php?r=site%2Fsignup");
         //throw new \Codeception\Exception\Incomplete("Step `I want to signup` is not defined");
     }
 
@@ -44,11 +44,11 @@ class AcceptanceTester extends \Codeception\Actor
             $pass .= "a";
             $count = $count - 1;
         } // while
-        $this->fillField(['name' => 'carnet'], '1');
-        $this->fillField(['name' => 'nombre'], 'TEST');
-        $this->fillField(['name' => 'apellido'], 'TEST');
-        $this->fillField(['name' => 'email'], 'test@mail.com');
-        $this->fillField(['name' => 'password'], $pass);
+        $this->fillField('Carnet', '1');
+        $this->fillField('Nombres', 'TEST');
+        $this->fillField('Apellidos', 'TEST');
+        $this->fillField('Correo', 'test@mail.com');
+        $this->fillField('Contrasena', $pass);
         $this->click('Submit');
         //throw new \Codeception\Exception\Incomplete("Step `I set up a password with :num1:num2 characters` is not defined");
     }

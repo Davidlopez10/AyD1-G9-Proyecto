@@ -10,6 +10,8 @@ use Yii;
  * @property int $carnet
  * @property string $nombres
  * @property string $apellidos
+ * @property string $contrasena
+ * @property string $correo
  *
  * @property UsuarioCurso[] $usuarioCursos
  * @property Curso[] $cursos
@@ -32,8 +34,9 @@ class Usuario extends \yii\db\ActiveRecord
         return [
             [['carnet', 'nombres', 'apellidos'], 'required'],
             [['carnet'], 'integer'],
-            [['nombres', 'apellidos'], 'string', 'max' => 255],
+            [['nombres', 'apellidos', 'contrasena', 'correo'], 'string', 'max' => 255],
             [['carnet'], 'unique'],
+            [['contrasena'], 'string', 'min'=>8],
         ];
     }
 
@@ -46,6 +49,8 @@ class Usuario extends \yii\db\ActiveRecord
             'carnet' => 'Carnet',
             'nombres' => 'Nombres',
             'apellidos' => 'Apellidos',
+            'contrasena' => 'Contrasena',
+            'correo' => 'Correo',
         ];
     }
 
