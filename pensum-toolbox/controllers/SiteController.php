@@ -141,6 +141,23 @@ class SiteController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSignup()
+    {
+        $model = new \app\models\Usuario();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate() && $model->save()) {
+                // form inputs are valid, do something here
+                //return;
+                return $this->goHome();
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Login action.
      *

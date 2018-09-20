@@ -43,6 +43,7 @@ AppAsset::register($this);
             ['label' => 'Asignacion Temporal', 'url' => ['/asignacion/index']],
             ['label' => 'Actividades Extra', 'url' => ['/extra/index']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Registrarse', 'url' => ['/site/signup']],
             /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

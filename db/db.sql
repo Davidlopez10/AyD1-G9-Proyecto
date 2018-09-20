@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 	carnet INT UNSIGNED NOT NULL,
 	nombres VARCHAR(255) NOT NULL,
 	apellidos VARCHAR(255) NOT NULL,
+	contrasena VARCHAR(255),
+	correo VARCHAR(255),
 	PRIMARY KEY (carnet)
 );
 
@@ -68,7 +70,7 @@ CREATE TABLE IF NOT EXISTS tarea(
 	FOREIGN KEY (post) REFERENCES curso(codigo)
 );*/
 
-INSERT INTO usuario(carnet, nombres, apellidos) VALUES ('209900909', 'USUARIO', 'PRUEBA');
+INSERT INTO usuario(carnet, nombres, apellidos, contrasena, correo) VALUES ('209900909', 'USUARIO', 'PRUEBA', 'superuser123', '201404007@ingenieria.usac.edu.gt');
 
 INSERT INTO area (nombre) VALUES ('Metodologia de Sistemas');
 INSERT INTO area (nombre) VALUES ('Ciencias de la Computacion');
@@ -178,3 +180,25 @@ INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '1
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '152', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '0011', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '2025', 1);
+
+INSERT INTO area (nombre) Values ('Actvidades extracurriculares');
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5000','Participacion en congreso estudiantil',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5001','Miembro activo de AEI',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5002','Participacion en congreso estudiantil',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5003','Ayudante en elecciones de AEU',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5004','Participacion en olimpiadas interuniversitarias',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5005','Ayudante de congreso estudiantil',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5006','Tutor de matematicas preuniversitarias',1,'N','N',8);
+
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5007','Actividad extra 1',1,'N','N',8);
+INSERT INTO curso (codigo, nombre, creditos, inicio_rama, obligatorio, area) values ('5008','Actividad extra 2',1,'N','N',8);
+
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5000', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5001', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5002', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5003', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5004', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5005', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5006', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5007', 1);
+INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5008', 1);
