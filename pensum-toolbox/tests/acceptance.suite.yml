@@ -7,3 +7,10 @@ modules:
             part: orm
             entryScript: index-test.php
             cleanup: true
+        - Db:
+            dsn: 'mysql:host=35.231.122.253;dbname=analisis'
+            user: 'analisis'
+            password: 'superuser123'
+            dump: tests/_data/db.sql
+            cleanup: true # reload dump between tests
+            populate: true # load dump before all tests
