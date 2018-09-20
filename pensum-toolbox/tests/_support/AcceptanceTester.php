@@ -58,7 +58,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function iShouldBeAbleToSignup()
     {
-        $this->See('Sign Up');
+        $this->See('Listado de Cursos');
         //throw new \Codeception\Exception\Incomplete("Step `I should be able to signup` is not defined");
     }
 
@@ -67,7 +67,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function iShouldNotBeAbleToSignup()
     {
-        $this->dontSee('Sign Up');  
+        $this->See('Submit');  
         //throw new \Codeception\Exception\Incomplete("Step `I should not be able to signup` is not defined");
     }
 

@@ -146,7 +146,7 @@ class SiteController extends Controller
         $model = new \app\models\Usuario();
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
+            if ($model->validate() && $model->save()) {
                 // form inputs are valid, do something here
                 //return;
                 return $this->goHome();
