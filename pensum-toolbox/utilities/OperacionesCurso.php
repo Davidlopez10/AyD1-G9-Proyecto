@@ -187,16 +187,26 @@ class OperacionesCurso{
         return false;
     } // marcar_como_aprobado
 
+    /**
+     * Obtener actividades extracurriculares disponibles
+     * @param  [type] $carnet_usuario   [description]
+     * @return [type]                 [description]
+     */
     public static function get_actividades_disponibles($carnet_usuario){
-      $query_string2= "SELECT * from curso where area = 8;";
+      $query_string2= "SELECT * FROM curso WHERE area = 8;";
       $connection = Yii::$app->getDb();
       $command = $connection->createCommand($query_string2);
       $result = $command->queryAll();
       return $result;
     }
-    
+
+    /**
+     * Obtener las actividades extracurriculares asignadas al usuario
+     * @param  [type] $carnet_usuario   [description]
+     * @return [type]                 [description]
+     */
     public static function get_usuario_cursos_ae($carnet_usuario){
-      $query_string= "SELECT * from usuario_curso where usuario = ".$carnet_usuario." AND curso IN (SELECT codigo from curso where area=8)";
+      $query_string= "SELECT * FROM usuario_curso WHERE usuario = ".$carnet_usuario." AND curso IN (SELECT codigo FROM curso WHERE area = 8)";
       $connection = Yii::$app->getDb();
       $command = $connection->createCommand($query_string);
       $result = $command->queryAll();
