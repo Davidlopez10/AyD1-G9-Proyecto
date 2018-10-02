@@ -112,7 +112,8 @@ class OperacionesCurso{
           AND UC.curso = C.codigo
               AND UC.usuario = ".$carnet_usuario."
               AND UC.estado_curso < 2
-              AND C.creditos_necesarios <= ".$total_creditos;
+              AND C.creditos_necesarios <= ".$total_creditos
+              ." AND C.area <> 8";
 
 
         $connection = Yii::$app->getDb();
@@ -142,7 +143,8 @@ class OperacionesCurso{
             AND UC.curso = C.codigo
                 AND UC.usuario = ".$carnet_usuario."
                 AND UC.estado_curso < 2
-                AND C.creditos_necesarios <= ".$total_creditos;
+                AND C.creditos_necesarios <= ".$total_creditos
+                ." AND C.area <> 8";
 
             foreach ((array)$cursos as &$curso) {
               $query_string .=" AND UC.curso <> ".$curso;
@@ -181,7 +183,8 @@ class OperacionesCurso{
             AND UC.curso = C.codigo
                 AND UC.usuario = ".$carnet_usuario."
                 AND UC.estado_curso < 2
-                AND C.creditos_necesarios <= ".$total_creditos;
+                AND C.creditos_necesarios <= ".$total_creditos
+                ." AND C.area <> 8";
 
             foreach ((array)$cursos as &$curso) {
               $query_string .=" AND UC.curso <> ".$curso;

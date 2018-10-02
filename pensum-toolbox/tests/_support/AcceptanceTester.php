@@ -126,7 +126,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function iShouldNotBeAbleToSignup()
     {
-        $this->See('Submit');  
+        $this->See('Submit');
         //throw new \Codeception\Exception\Incomplete("Step `I should not be able to signup` is not defined");
     }
 
@@ -182,4 +182,33 @@ class AcceptanceTester extends \Codeception\Actor
          $this->see("Marcado como aprobado la actividad");
         //throw new \Codeception\Exception\Incomplete("Step `I should a message of success` is not defined");
     }
+    /**
+     * @Given I want to see the courses
+     */
+     public function iWantToSeeTheCourses()
+     {
+         $this->amOnPage("/index.php?r=asignacion%2Findex");
+         // throw new \Codeception\Exception\Incomplete("Step `I want to see the courses` is not defined");
+     }
+
+    /**
+     * @When I try to see the courses if i approve Deportes uno
+     */
+     public function iTryToSeeTheCoursesIfIApproveDeportesUno()
+     {
+         $this->selectOption('cursos[]', array('text' => 'Deportes 1'));
+         $this->click('Ver cursos siguientes');
+         // throw new \Codeception\Exception\Incomplete("Step `I try to see the courses if i approve Deportes uno` is not defined");
+     }
+
+    /**
+     * @Then I should be able to see the courses
+     */
+     public function iShouldBeAbleToSeeTheCourses()
+     {
+         $this->See('Deportes 2');
+         // throw new \Codeception\Exception\Incomplete("Step `I should be able to see the courses` is not defined");
+     }
+
+
 }
