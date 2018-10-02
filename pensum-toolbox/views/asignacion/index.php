@@ -8,7 +8,6 @@ $this->title = 'Asignacion Temporal';
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css");
 
-<<<<<<< HEAD
 
 
 //saco el numero de elementos
@@ -45,8 +44,6 @@ if($longitud>0){
   $this->registerJs($funcion);
 }
 
-=======
->>>>>>> dashboard_bdd
 $this->registerJs("$(document).ready(function() {
 $('#cursos').multiselect({
 nonSelectedText: 'Elegir cursos',
@@ -116,12 +113,9 @@ enableFiltering: true
                 <h2 class="page-header">Cursos siguientes&nbsp;&nbsp;</h2>
                 <div id="cursosdisp" class="collapse in">
                     <ul class="list-group">
-<<<<<<< HEAD
                       <?php foreach((array)$cursos_siguientes_nuevos as $cursos_siguientes_nuevo){ ?>
                           <li class="list-group-item list-group-item-success"><?php echo $cursos_siguientes_nuevo['nombre']; ?></li>
                       <?php } // foreach ?>
-=======
->>>>>>> dashboard_bdd
                     <?php foreach((array)$cursos_siguientes as $cursos_siguiente){ ?>
                         <li class="list-group-item"><?php echo $cursos_siguiente['nombre']; ?></li>
                     <?php } // foreach ?>
