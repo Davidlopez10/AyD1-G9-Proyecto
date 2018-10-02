@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'carnet') ?>
         <?= $form->field($model, 'nombres') ?>
         <?= $form->field($model, 'apellidos') ?>
-        <?= $form->field($model, 'contrasena') ?>
+        <?= $form->field($model, 'contrasena')->passwordInput() ?>
         <?= $form->field($model, 'correo') ?>
     
         <div class="form-group">
