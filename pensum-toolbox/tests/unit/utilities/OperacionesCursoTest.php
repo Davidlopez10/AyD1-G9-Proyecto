@@ -13,7 +13,20 @@ class OperacionesCursoTest extends \Codeception\Test\Unit
     private $mate_basica_2 = '103';
     private $mate_intermedia_1 = '107';
     private $deportes_1 = '039';
-
+    //curso de pruebas
+    private $codigoCurso = '736';
+    private $codigoNull= null;
+    private $nombre = 'Analisis Probabilistico';
+    private $creditos = 4;
+    private $creditosNegativos = -2;
+    private $inicio_rama = 'N';
+    private $obligatorio = 'N';
+    private $creditos_necesarios = 0;
+    private $area =1;
+    //valores de prueba de prerrequisitos
+    private $pre ='112';
+    private $preNull= null;
+    private $post ='118';
     public function testMarcarCursoComoNoAprobado(){
         $result = OperacionesCurso::marcar_como_no_aprobado($this->mate_intermedia_1,$this->usuario_de_pruebas);
         $this->assertTrue($result);
@@ -95,5 +108,27 @@ class OperacionesCursoTest extends \Codeception\Test\Unit
     public function testListaUsarioCursoActividadesExtracurriculares(){
         $result = OperacionesCurso::get_usuario_cursos_ae($this->usuario_de_pruebas);
         $this->assertNotEmpty($result);
+    }
+    //Pruebas de agregacion de curso
+    public function testAgregarCursoConAlgunValorObligatorioNull(){
+        $result = OperacionesCurso::agregar_curso($this->codigoNull,$this->nombre,$this->creditos,$this->inicio_rama,$this->obligatorio,$this->creditos_necesarios,$this->area);
+        $this-> assertFalse($result);
+    }
+    public function testAgregarCursoConTodosLosDatosCorrectos(){
+        $result = OperacionesCurso::agregar_curso($this->codigoCurso,$this->nombre,$this->creditos,$this->inicio_rama,$this->obligatorio,$this->creditos_necesarios,$this->area);
+        $this-> assertTrue($result);
+    }
+    public function testAgregarCursoConCantidadDeCreditosNegativa(){
+      $result = OperacionesCurso::creditos_otorgados_validos($this->creditosNegativos);
+      $this-> assertFalse($result);
+    }
+    //Pruebas de prerrequisitos
+    public function testAgregarPrerrequisitoSinValoresNull(){
+      $result = OperacionesCurso::agregar_prerrequisto($this->pre,$this->post);
+      $this-> assertTrue($result);
+    }
+    public function testTratarDeAgregarPrerrequisitoConAlgunValorNull(){
+      $result = OperacionesCurso::agregar_prerrequisto($this->preNull,$this->post);
+      $this-> assertFalse($result);
     }
 }
