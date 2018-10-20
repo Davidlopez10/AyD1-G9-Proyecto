@@ -44,6 +44,13 @@ AppAsset::register($this);
             ['label' => 'Actividades Extra', 'url' => ['/extra/index']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Registrarse', 'url' => ['/site/signup']],
+            [
+              'label' => 'Administrar cursos',
+              'items' => [
+                 ['label' => 'Crear Curso', 'url' => '#'],
+               ],
+
+            ],
             /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -82,4 +89,4 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>         
+<?php $this->endPage() ?>
