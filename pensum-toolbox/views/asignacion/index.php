@@ -92,7 +92,7 @@ enableFiltering: true
                     $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['asignacion/ver-siguientes'], 'method' => 'post']);
                     ?>
                     <div class="form-group">
-                        <select id="cursos" name="cursos[]" multiple >
+                        <select class="cursos_class" id="cursos" name="cursos[]" multiple >
                             <?php foreach($cursos_disponibles as $cursos_disponible){ ?>
                                 <option value="<?php echo $cursos_disponible['codigo']; ?>"><?php echo $cursos_disponible['nombre']; ?></option>
                             <?php } // foreach ?>

@@ -2238,6 +2238,7 @@
         },
         {
             "name": "symfony/console",
+
             "version": "v4.1.6",
             "source": {
                 "type": "git",
@@ -2248,6 +2249,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/console/zipball/dc7122fe5f6113cfaba3b3de575d31112c9aa60b",
                 "reference": "dc7122fe5f6113cfaba3b3de575d31112c9aa60b",
+
                 "shasum": ""
             },
             "require": {
@@ -2303,6 +2305,7 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
             "time": "2018-10-03T08:15:46+00:00"
+
         },
         {
             "name": "symfony/css-selector",
@@ -3744,6 +3747,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
+
             "time": "2018-10-02T12:40:59+00:00"
         },
         {
@@ -3758,6 +3762,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/translation/zipball/9f0b61e339160a466ebcde167a6c5521c810e304",
                 "reference": "9f0b61e339160a466ebcde167a6c5521c810e304",
+
                 "shasum": ""
             },
             "require": {
@@ -3814,6 +3819,7 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2018-10-02T16:36:10+00:00"
+
         },
         {
             "name": "yiisoft/yii2-debug",

@@ -62,6 +62,9 @@ CREATE TABLE IF NOT EXISTS usuario_curso(
 );
 
 /*DROP TABLE IF EXISTS tarea;
+
+
+
 CREATE TABLE IF NOT EXISTS tarea(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	post VARCHAR(10),
@@ -201,3 +204,4 @@ INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5006', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5007', 1);
 INSERT INTO usuario_curso (usuario, curso, estado_curso) VALUES ('209900909', '5008', 1);
+
