@@ -47,7 +47,8 @@ AppAsset::register($this);
             [
               'label' => 'Administrar cursos',
               'items' => [
-                 ['label' => 'Crear Curso', 'url' => '#'],
+                ['label' => 'Crear Curso', 'url' => ['/administrar/agregar']],
+                ['label' => 'Gestionar Prerrequisitos', 'url' => ['/administrar/prerequisitos']],
                ],
 
             ],
