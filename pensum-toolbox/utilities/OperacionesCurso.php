@@ -224,5 +224,41 @@ class OperacionesCurso{
       $result = $command->queryAll();
       return $result;
     }
+    public static function agregar_curso($codigo,$nombre,$creditos,$inicio_rama,$obligatorio,$creditos_necesarios,$area){
+      if($codigo!=null&&$nombre!=null&&$creditos!=null&&$inicio_rama!=null&&$obligatorio!=null&&$area!=null){
+        $curso = new Curso;
+        $curso->codigo = $codigo;
+        $curso->nombre = $nombre;
+        $curso->creditos = $creditos;
+        $curso->inicio_rama = $inicio_rama;
+        $curso->obligatorio = $obligatorio;
+        if ($creditos_necesarios==null){
+          $curso->creditos_necesarios = 0;
+        }else{
+          $curso->creditos_necesarios = $creditos_necesarios;
+        }
+        $curso->area = $area;
+        $curso->save();
+        return true;
+      }
+      return false;
+    }
+    public static function creditos_otorgados_validos($creditos){
+      if ($creditos >=0){
+        return true;
+      }
+      return false;
+    }
+
+    public static function agregar_prerrequisto($pre,$post){
+      if($pre!=null && $post!=null){
+        $prerrequisito = new Prerrequisito;
+        $prerrequisito->pre = $pre;
+        $prerrequisito->post= $post;
+        $prerrequisito->save();
+        return true;
+      }
+      return false;
+    }
 
 }
