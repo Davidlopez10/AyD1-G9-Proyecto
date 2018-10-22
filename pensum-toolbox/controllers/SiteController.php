@@ -70,7 +70,6 @@ class SiteController extends Controller
         // ACA SE DEBE OBTENER EL CARNET DE USUARIO LOGUEADO
         $carnet_usuario = 209900909; // USUARIO DE PRUEBAS
         $data_arrs = Dashboard::get_cursos($carnet_usuario);
-
         $suma_creditos = OperacionesCreditos::get_total_creditos_usuario($carnet_usuario);
         $modalidades = OperacionesCreditos::get_modalidades_disponibles($suma_creditos);
         $cursos_disponibles = OperacionesCurso::get_cursos_disponibles($carnet_usuario);

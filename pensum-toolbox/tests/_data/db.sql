@@ -61,13 +61,16 @@ CREATE TABLE IF NOT EXISTS usuario_curso(
 	FOREIGN KEY (estado_curso) REFERENCES estado_curso(id)
 );
 
-/*DROP TABLE IF EXISTS tarea;
+DROP TABLE IF EXISTS tarea;
+
 CREATE TABLE IF NOT EXISTS tarea(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	post VARCHAR(10),
+	descripcion VARCHAR(500) NOT NULL,
+	fecha DATE NOT NULL,
+	usuario INT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (post) REFERENCES curso(codigo)
-);*/
+	FOREIGN KEY (usuario) REFERENCES usuario(carnet)
+);
 
 INSERT INTO usuario(carnet, nombres, apellidos, contrasena, correo) VALUES ('209900909', 'USUARIO', 'PRUEBA', 'superuser123', '201404007@ingenieria.usac.edu.gt');
 
