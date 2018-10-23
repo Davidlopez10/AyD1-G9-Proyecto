@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps { 
-	      sh 'pensum-toolbox/vendor/bin/codecept run' 
+      		sh 'cd pensum-toolbox'
+	      	sh 'vendor/bin/codecept run' 
       }
     }
   }
