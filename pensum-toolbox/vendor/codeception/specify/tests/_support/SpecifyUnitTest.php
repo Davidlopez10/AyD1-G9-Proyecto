@@ -1,12 +1,9 @@
 <?php
 
-class SpecifyUnitTest extends \PHPUnit\Framework\TestCase
+class SpecifyUnitTest extends \PHPUnit_Framework_TestCase
 {
     use Codeception\Specify;
 
-    /**
-     * @specify
-     */
     private $private = true;
 
     /**

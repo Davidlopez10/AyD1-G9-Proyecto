@@ -4,18 +4,18 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
+class ComposerStaticInitca92174f94924455cc80624f2ab12859
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -46,29 +46,18 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Translation\\' => 30,
-            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Finder\\' => 25,
-            'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DomCrawler\\' => 29,
-            'Symfony\\Component\\DependencyInjection\\' => 38,
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-            'Symfony\\Component\\Config\\' => 25,
-            'Symfony\\Component\\ClassLoader\\' => 30,
             'Symfony\\Component\\BrowserKit\\' => 29,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
-            'Psr\\Container\\' => 14,
-        ),
-        'I' => 
-        array (
-            'Interop\\Container\\' => 18,
         ),
         'G' => 
         array (
@@ -79,7 +68,6 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         'F' => 
         array (
             'Faker\\' => 6,
-            'Facebook\\WebDriver\\' => 19,
         ),
         'D' => 
         array (
@@ -109,7 +97,7 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         ),
         'yii\\debug\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-debug',
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-debug/src',
         ),
         'yii\\composer\\' => 
         array (
@@ -149,21 +137,9 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Translation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/translation',
-        ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
         'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
-        ),
-        'Symfony\\Component\\Filesystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
@@ -172,10 +148,6 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         'Symfony\\Component\\DomCrawler\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/dom-crawler',
-        ),
-        'Symfony\\Component\\DependencyInjection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/dependency-injection',
         ),
         'Symfony\\Component\\Debug\\' => 
         array (
@@ -189,14 +161,6 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Symfony\\Component\\Config\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/config',
-        ),
-        'Symfony\\Component\\ClassLoader\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/class-loader',
-        ),
         'Symfony\\Component\\BrowserKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
@@ -208,14 +172,6 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
-        'Psr\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
-        'Interop\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -233,10 +189,6 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
-        'Facebook\\WebDriver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
-        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -252,14 +204,11 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         'Codeception\\Extension\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/base/ext',
-            1 => __DIR__ . '/..' . '/codeception/codeception/ext',
         ),
         'Codeception\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
-            1 => __DIR__ . '/..' . '/codeception/codeception/src/Codeception',
-            2 => __DIR__ . '/..' . '/codeception/stub/src',
-            3 => __DIR__ . '/..' . '/codeception/verify/src/Codeception',
+            1 => __DIR__ . '/..' . '/codeception/stub/src',
         ),
     );
 
@@ -294,21 +243,9 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
         ),
         'B' => 
         array (
-            'Behat\\Transliterator' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/transliterator/src',
-            ),
-            'Behat\\Testwork' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/behat/src',
-            ),
             'Behat\\Gherkin' => 
             array (
                 0 => __DIR__ . '/..' . '/behat/gherkin/src',
-            ),
-            'Behat\\Behat' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/behat/src',
             ),
         ),
     );
@@ -861,10 +798,10 @@ class ComposerStaticInitb39ad75f309c94978999a4184ec41aed
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb39ad75f309c94978999a4184ec41aed::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb39ad75f309c94978999a4184ec41aed::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb39ad75f309c94978999a4184ec41aed::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb39ad75f309c94978999a4184ec41aed::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitca92174f94924455cc80624f2ab12859::$classMap;
 
         }, null, ClassLoader::class);
     }

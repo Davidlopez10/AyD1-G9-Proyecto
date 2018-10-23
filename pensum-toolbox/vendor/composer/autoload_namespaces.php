@@ -10,8 +10,5 @@ return array(
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Codeception\\' => array($vendorDir . '/codeception/specify/src'),
-    'Behat\\Transliterator' => array($vendorDir . '/behat/transliterator/src'),
-    'Behat\\Testwork' => array($vendorDir . '/behat/behat/src'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
-    'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
 );

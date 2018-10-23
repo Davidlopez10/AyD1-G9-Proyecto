@@ -1,8 +1,9 @@
 <?php
 
-include_once __DIR__.'/../src/Codeception/function.php';
+include __DIR__.'/../src/Codeception/function.php';
+include __DIR__.'/../vendor/autoload.php';
 
-class VerifyTest extends PHPUnit\Framework\TestCase {
+class VerifyTest extends PHPUnit_Framework_TestCase {
 
     protected $xml;
 

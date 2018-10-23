@@ -1,11 +1,9 @@
 <?php
 namespace Codeception;
 
-use PHPUnit\Framework\Assert as a;
+use PHPUnit_Framework_Assert as a;
 
 class Verify {
-
-    public static $override = false;
 
     protected $actual = null;
     protected $description = '';
@@ -17,12 +15,11 @@ class Verify {
 
         if (!$descriptionGiven) {
             $this->actual = $description;
-            return;
+        } else {
+            $actual = func_get_args();
+            $this->actual = $actual[1];
+            $this->description = $description;
         }
-
-        $actual = func_get_args();
-        $this->actual = $actual[1];
-        $this->description = $description;
     }
 
     /**

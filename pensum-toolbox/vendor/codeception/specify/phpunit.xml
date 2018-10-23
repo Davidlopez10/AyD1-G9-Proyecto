@@ -1,5 +1,5 @@
 <phpunit colors="true"
-         bootstrap="tests/_bootstrap.php" printerClass="Codeception\Specify\ResultPrinter">
+         bootstrap="tests/_bootstrap.php">
     <testsuites>
      <testsuite name="Specify">
       <directory>tests</directory>
