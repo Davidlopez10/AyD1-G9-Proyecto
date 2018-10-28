@@ -17,17 +17,4 @@ class OperacionesAsignacionTest extends \Codeception\Test\Unit
 
 
 
-    public function testTratarDeVisualizarAsignacionSinPrerrequisitos(){
-        $result = OperacionesCurso::get_cursos_disponibles_asignacion($this->usuario_de_pruebas, array('040'));
-        $this->assertEmpty($result);
-    }
-
-
-    /**
-    * @depends testTratarDeVisualizarAsignacionSinPrerrequisitos
-    */
-    public function testTratarDeVisualizarAsignacion(){
-        $result = OperacionesCurso::get_cursos_disponibles_asignacion($this->usuario_de_pruebas, array('0009', '039'));
-        $this->assertNotEmpty($result);
-    }
 }
